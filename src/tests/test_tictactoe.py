@@ -26,7 +26,7 @@ class TestTicTacToeGame(unittest.TestCase):
         self.assertRaises(OutOfRangeError, self.game.validate_input, "10")
 
     def test_draw(self):
-        """This test validates a situation, when all cells are occupied, but there is no a winner"""
+        """This test validates a situation, when all cells are occupied, but there is no winner"""
 
         self.game.board = ["X", "O", "X", "X", "O", "O", "O", "X", "X"]
         self.assertEqual(self.game.check_winner(), False)
@@ -42,7 +42,3 @@ class TestTicTacToeGame(unittest.TestCase):
 
         self.game.board = ["X", "X", "O", "X", "O", "O", "O", "X", 9]
         self.assertEqual(self.game.check_winner(), True)
-
-
-if __name__ == "__main__":
-    unittest.main()
