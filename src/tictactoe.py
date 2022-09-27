@@ -61,8 +61,8 @@ class TicTacToeGame:
                 player_token = "O"
                 clr = "93"
 
-            input_str = input("It's turn of \x1b[" + clr + f"mPlayer {player_number} ({player_token})."
-                              "\x1b[0m\nEnter a number: ")
+            input_str = input("It's turn of \x1b[" + clr +
+                              f"mPlayer {player_number} ({player_token}).\x1b[0m\nEnter a number: ")
 
             try:
                 self.board[self.validate_input(input_str)] = player_token
