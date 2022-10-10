@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset = "UTF-8">
+    <title>Restaurant</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body style="background-image: url({%static 'images/main_menu.jpg'%}) ; background-size: 100%">
+        <div class="label">
+            ГЛАВНОЕ МЕНЮ
+        </div>
+
+    <div class="black_bg" style="width: 50%;">
+        <table class="table_of_buttons">
+            <tr><td><a class="in_table_button" href="http://localhost:8000/chats">
+                Чаты
+            </a></td></tr>
+            <tr><td><a class="in_table_button" href="http://localhost:8000/chats/1">
+                Детализация чата
+            </a></td></tr>
+        </table>
+    </div>
+</body>
+</html>
