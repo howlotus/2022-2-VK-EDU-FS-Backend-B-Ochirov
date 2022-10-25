@@ -1,7 +1,7 @@
 from django.db import models
 
 
-# Create your models here.
+# Models for user
 class User(models.Model):
     id = models.AutoField(primary_key=True, verbose_name='Идентификатор пользователя')
     phone_number = models.TextField(verbose_name='Номер телефона')
