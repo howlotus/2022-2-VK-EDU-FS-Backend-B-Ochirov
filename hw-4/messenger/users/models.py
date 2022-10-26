@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Models for user
-class User(models.Model):
+class User(models.Model): # to AbstractUser
     id = models.AutoField(primary_key=True, verbose_name='Идентификатор пользователя')
     phone_number = models.TextField(verbose_name='Номер телефона')
     username = models.TextField(unique=True, verbose_name='Имя пользователя')
@@ -11,7 +11,7 @@ class User(models.Model):
         verbose_name = 'Пользователь'
 
 
-class UserInfo(models.Model):
+class UserInfo(models.Model): # UserProfile
     id = models.AutoField(primary_key=True, verbose_name='Идентификатор записи о пользователе')
     name = models.TextField(verbose_name='Имя пользователя')
     info = models.TextField(verbose_name='Краткая информация о пользователе')
