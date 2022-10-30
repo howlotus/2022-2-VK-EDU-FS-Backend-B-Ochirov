@@ -15,11 +15,15 @@ def default_message_handler(request):
 
     if request.method == 'GET':
         chat_id = request.GET.get('chat_id', None)
+        sender_id = request.GET.get('user_id', None)
         try:
+            context = {}
             if chat_id:
-                messages = Message.objects.filter(chat_id=chat_id)
-            else:
-                messages = Message.objects.all()
+                context['chat_id'] = chat_id
+            if sender_id:
+                context['sender_id'] = sender_id
+
+            messages = Message.objects.filter(**context)
 
             message_list = []
             for obj in messages:
