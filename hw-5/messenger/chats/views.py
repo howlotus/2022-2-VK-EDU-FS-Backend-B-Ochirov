@@ -32,17 +32,25 @@ def create_chat_handler(request):
 
 @csrf_exempt
 @require_http_methods(['GET'])
-def chat_list(request):
+def get_chat_list(request):
     """This view shows all chats"""
 
     try:
         chats = Chat.objects.all()
 
+        chat_list = []
+        for obj in chats:
+            chat_list.append(
+                {
+                    'id': obj.id,
+                    'title': obj.title,
+                    'datetime_created': obj.datetime_created
+                }
+            )
 
+        return JsonResponse({'chats': chat_list})
     except Chat.DoesNotExist:
-        pass
-
-    return HttpResponse(status=404)
+        return HttpResponse(status=404)
 
 
 @csrf_exempt
