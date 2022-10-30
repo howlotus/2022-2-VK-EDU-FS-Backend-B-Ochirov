@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from users.models import User
 from chats.models import Chat
@@ -5,7 +6,6 @@ from chats.models import Chat
 
 # Create your models here.
 class Message(models.Model):
-    DoesNotExist = None
     objects = None
     NOT_DELIVERED = 'NE'
     DELIVERED = 'DE'
@@ -43,3 +43,7 @@ class Message(models.Model):
 
     class Meta:
         verbose_name = 'Сообщение'
+        verbose_name_plural = 'Сообщения'
+
+    class DoesNotExist(ObjectDoesNotExist):
+        pass

@@ -1,10 +1,10 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from users.models import User
 
 
 # Models for chats and messages
 class Chat(models.Model):
-    DoesNotExist = None
     objects = None
     title = models.CharField(
         max_length=30,
@@ -17,6 +17,10 @@ class Chat(models.Model):
 
     class Meta:
         verbose_name = 'Чат'
+        verbose_name_plural = 'Чаты'
+
+    class DoesNotExist(ObjectDoesNotExist):
+        pass
 
 
 class ChatMember(models.Model):
@@ -39,4 +43,5 @@ class ChatMember(models.Model):
 
     class Meta:
         verbose_name = 'Участник чата'
-        unique_together = ('user', 'chat',)
+        verbose_name_plural = 'Участники чата'
+        unique_together = ('user', 'chat')

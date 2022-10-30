@@ -1,3 +1,5 @@
+"""This module defines urls of chat_messages app"""
+
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
@@ -19,7 +21,7 @@ def create_message_handler(request, chat_id):
 
 
 @csrf_exempt
-@require_http_methods(['GET', 'DELETE'])
+@require_http_methods(['GET', 'PUT', 'DELETE'])
 def edit_message_handler(request, message_id):
     """This view shows, deletes a message with id==message_id"""
 
@@ -37,6 +39,12 @@ def edit_message_handler(request, message_id):
                     'sender_id': message.sender_id
                 }
             )
+        elif request.method == 'PUT':
+            message.content = 'qqqqq'
+            message.status = 'RE'
+            message.save()
+
+            return HttpResponse(status=200)
         else:
             message.delete()
 
