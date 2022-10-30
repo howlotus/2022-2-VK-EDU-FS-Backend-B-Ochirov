@@ -4,21 +4,34 @@ from django.contrib.auth.models import AbstractUser
 
 # Models for user
 class User(AbstractUser):
-    phone_number = models.TextField(verbose_name='Номер телефона')
-    username = models.TextField(unique=True, verbose_name='Имя пользователя')
+    phone_number = models.CharField(
+        max_length=16,
+        verbose_name='Номер телефона'
+    )
+    username = models.CharField(
+        max_length=30,
+        unique=True,
+        verbose_name='Уникальное имя пользователя'
+    )
 
     class Meta:
         verbose_name = 'Пользователь'
 
 
 class UserProfile(models.Model):  # UserProfile
-    name = models.TextField(verbose_name='Имя пользователя')
-    info = models.TextField(verbose_name='Краткая информация о пользователе')
-    creation_datetime = models.DateTimeField(verbose_name='Дата и время создания пользователя')
+    full_name = models.CharField(
+        max_length=50,
+        verbose_name='Полное имя пользователя'
+    )
+    info = models.CharField(
+        max_length=120,
+        verbose_name='Краткая информация о пользователе'
+    )
     user = models.OneToOneField(
         User,
         verbose_name='Идентификатор пользователя',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='user_profiles'
     )
 
     class Meta:
