@@ -60,6 +60,16 @@ def default_message_handler(request):
 
         if chat_id and sender_id and content and status:
             chat_members = ChatMember.objects.filter(chat_id=chat_id)
+
+            if not chat_members:
+                return JsonResponse(
+                    {
+                        'title': 'Not a chat',
+                        'detail': 'Attempt to send message to non-existing chat'
+                    },
+                    status=400
+                )
+
             members = []
 
             for i in chat_members:
