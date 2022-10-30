@@ -24,15 +24,15 @@ class Chat(models.Model):
 
 
 class ChatMember(models.Model):
-    user = models.ForeignKey(
-        User,
-        verbose_name='Идентификатор пользоателя',
-        on_delete=models.CASCADE,
-        related_name='chat_members'
-    )
     chat = models.ForeignKey(
         Chat,
         verbose_name='Идентификатор чата',
+        on_delete=models.CASCADE,
+        related_name='chat_members'
+    )
+    user = models.ForeignKey(
+        User,
+        verbose_name='Идентификатор пользоателя',
         on_delete=models.CASCADE,
         related_name='chat_members'
     )
@@ -44,4 +44,4 @@ class ChatMember(models.Model):
     class Meta:
         verbose_name = 'Участник чата'
         verbose_name_plural = 'Участники чата'
-        unique_together = ('user', 'chat')
+        unique_together = ('chat', 'user')
