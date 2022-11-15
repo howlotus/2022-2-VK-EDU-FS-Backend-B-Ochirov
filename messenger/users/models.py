@@ -16,6 +16,7 @@ class User(AbstractUser):
 
     class Meta:
         verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
 
 
 class UserProfile(models.Model):  # UserProfile
@@ -36,3 +37,4 @@ class UserProfile(models.Model):  # UserProfile
 
     class Meta:
         verbose_name = 'Информация о пользователе'
+        verbose_name_plural = 'Информация о пользователях'
