@@ -1,4 +1,3 @@
-from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -18,9 +17,6 @@ class User(AbstractUser):
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
-
-    class DoesNotExist(ObjectDoesNotExist):
-        pass
 
 
 class UserProfile(models.Model):  # UserProfile

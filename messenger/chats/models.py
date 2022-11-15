@@ -1,11 +1,9 @@
-from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from users.models import User
 
 
 # Models for chats and messages
 class Chat(models.Model):
-    objects = None
     title = models.CharField(
         max_length=30,
         verbose_name='Название чата'
@@ -18,9 +16,6 @@ class Chat(models.Model):
     class Meta:
         verbose_name = 'Чат'
         verbose_name_plural = 'Чаты'
-
-    class DoesNotExist(ObjectDoesNotExist):
-        pass
 
 
 class ChatMember(models.Model):
