@@ -23,7 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('chats/', include('chats.urls')),
     path('users/', include('users.urls')),
-    path('messages/', include('chat_messages.urls'))
+    path('messages/', include('chat_messages.urls')),
+    path('members/', include('chat_members.urls'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()

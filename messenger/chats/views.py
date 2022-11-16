@@ -20,6 +20,7 @@ def get_chats(request):
             {
                 'id': obj.id,
                 'title': obj.title,
+                'description': obj.description,
                 'datetime_created': obj.datetime_created
             }
         )
@@ -32,15 +33,17 @@ def get_chats(request):
 def add_chat(request):
     """This view adds a new chat"""
 
-    title = request.POST.get('Title')
+    title = request.POST.get('title')
+    description = request.POST.get('description')
 
-    if title:
-        chat = Chat.objects.create(title=title)
+    if title and description:
+        chat = Chat.objects.create(title=title, description=description)
 
         return JsonResponse(
             {
                 'id': chat.id,
                 'title': chat.title,
+                'description': chat.description,
                 'datetime_created': chat.datetime_created
             },
             status=201
@@ -49,7 +52,7 @@ def add_chat(request):
     return JsonResponse(
         {
             'title': 'Expected payload',
-            'detail': 'No keyword "Title"'
+            'detail': 'No keyword "title" and "description"'
         },
         status=400
     )
@@ -66,6 +69,7 @@ def get_chat(request, chat_id):
         {
             'id': chat.id,
             'title': chat.title,
+            'description': chat.description,
             'datetime_created': chat.datetime_created
         }
     )
@@ -80,15 +84,18 @@ def update_chat(request, chat_id):
 
     put = QueryDict(request.body)
     title = put.get('title')
+    description = put.get('description')
 
-    if title:
+    if title and description:
         chat.title = title
+        chat.description = description
         chat.save()
 
         return JsonResponse(
             {
                 'id': chat.id,
                 'title': chat.title,
+                'description': chat.description,
                 'datetime_created': chat.datetime_created
             },
             status=200
@@ -97,7 +104,7 @@ def update_chat(request, chat_id):
     return JsonResponse(
         {
             'title': 'Expected payload',
-            'detail': 'No keyword "Title"'
+            'detail': 'No keyword "title" or "description"'
         },
         status=400
     )

@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'chats',
     'users',
-    'chat_messages'
+    'chat_messages',
+    'chat_members'
 ]
 
 MIDDLEWARE = [
